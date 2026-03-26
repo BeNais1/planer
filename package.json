@@ -1,6 +1,6 @@
 {
   "name": "planer",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "Boris",
   "description": "Minimalist planner with Apple-inspired design",
   "main": "electron/main.js",
@@ -26,6 +26,7 @@
     "electron-updater": "^6.8.3",
     "firebase": "^12.11.0",
     "framer-motion": "^11.0.0",
+    "html2pdf.js": "^0.14.0",
     "lowlight": "^3.3.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
