@@ -54,8 +54,8 @@
     "publish": [
       {
         "provider": "github",
-        "owner": "ТВІЙ_GITHUB_USERNAME",
-        "repo": "ТВІЙ_GITHUB_РЕПОЗИТОРІЙ"
+        "owner": "BeNais1",
+        "repo": "planer"
       }
     ]
   }
