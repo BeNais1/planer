@@ -4,6 +4,8 @@ import { useTheme } from '../context/ThemeContext';
 import { PageIcon, TaskIcon, SunIcon, MoonIcon, GraphIcon } from './Icons';
 import logoSrc from '../assets/logo.svg';
 
+import pkg from '../../package.json';
+
 export default function Sidebar({
   pages,
   activePageId,
@@ -25,7 +27,10 @@ export default function Sidebar({
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
           <div className="sidebar-logo">
             <img src={logoSrc} alt="Planer" className="sidebar-logo-img" />
-            Planer
+            <div style={{ display: 'flex', flexDirection: 'column' }}>
+              <span>Planer</span>
+              <span style={{ fontSize: '9px', color: 'var(--text-secondary)', marginTop: '-2px', fontWeight: '500', letterSpacing: '0.5px' }}>v{pkg.version}</span>
+            </div>
           </div>
           <div style={{ display: 'flex', gap: 4 }}>
             <button

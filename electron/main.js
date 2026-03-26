@@ -172,6 +172,24 @@ app.whenReady().then(() => {
   
   // Checking for updates (will run silently in the background)
   autoUpdater.checkForUpdatesAndNotify();
+
+  // Show dialog when update is downloaded
+  autoUpdater.on('update-downloaded', () => {
+    const dialogOpts = {
+      type: 'info',
+      buttons: ['Встановити зараз', 'Нагадати пізніше'],
+      title: 'Оновлення Planer',
+      message: 'Нова версія програми успішно завантажена!',
+      detail: 'Ви можете закрити програму та встановити її прямо зараз, або зробити це пізніше під час наступного запуску.'
+    };
+
+    const { dialog } = require('electron');
+    dialog.showMessageBox(dialogOpts).then((returnValue) => {
+      if (returnValue.response === 0) {
+        autoUpdater.quitAndInstall();
+      }
+    });
+  });
 });
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit();
