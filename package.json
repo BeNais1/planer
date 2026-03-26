@@ -47,6 +47,10 @@
     "directories": {
       "output": "dist-electron"
     },
+    "forceCodeSigning": false,
+    "win": {
+      "target": "nsis"
+    },
     "files": [
       "dist/**/*",
       "electron/**/*"
