@@ -1,0 +1,33 @@
+name: Build and Publish Electron App
+
+on:
+  push:
+    tags:
+      - 'v*' # Цей скрипт спрацює ТІЛЬКИ коли ти створиш тег з version, наприклад v1.0.0
+
+jobs:
+  release:
+    runs-on: windows-latest # Збираємо на чистій Windows серверній машині
+
+    permissions:
+      contents: write # Даємо право боту записувати файли у вкладку Releases
+
+    steps:
+      - name: Cкачуємо твій код
+        uses: actions/checkout@v4
+
+      - name: Встановлюємо Node.js (Версія 20)
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Встановлюємо залежності (як npm install)
+        run: npm ci --legacy-peer-deps
+
+      - name: Збираємо сам застосунок (Vite)
+        run: npx vite build
+
+      - name: Пакуємо в Інсталятор (.exe) та Публікуємо в Releases
+        run: npx electron-builder --win -p always
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Стандартний токен GitHub (працює сам по собі)
