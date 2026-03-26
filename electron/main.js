@@ -173,7 +173,24 @@ app.whenReady().then(() => {
   // Checking for updates (will run silently in the background)
   autoUpdater.checkForUpdatesAndNotify();
 
-  // Show dialog when update is downloaded
+  // Instant feedback when an update IS found
+  autoUpdater.on('update-available', (info) => {
+    const { dialog } = require('electron');
+    dialog.showMessageBox({
+      type: 'info',
+      title: 'Знайдено оновлення',
+      message: `Нова версія (${info.version}) знайдена на сервері!`,
+      detail: 'Оновлення зараз завантажується у фоновому режимі. Зачекайте хвилинку...'
+    });
+  });
+
+  // Capture any errors (e.g., if GitHub is blocking us or repo is private)
+  autoUpdater.on('error', (err) => {
+    const { dialog } = require('electron');
+    dialog.showErrorBox('Помилка перевірки оновлень', err == null ? "Невідома помилка" : err.toString());
+  });
+
+  // Show dialog when update is completely downloaded
   autoUpdater.on('update-downloaded', () => {
     const dialogOpts = {
       type: 'info',
