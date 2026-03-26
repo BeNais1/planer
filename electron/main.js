@@ -169,13 +169,6 @@ ipcMain.handle('theme:update', (_event, theme) => {
 // ── App lifecycle ────────────────────────────────────────────
 app.whenReady().then(() => {
   createWindow();
-  
-  // Manually configure the update feed (bypasses missing app-update.yml in Squirrel)
-  autoUpdater.setFeedURL({
-    provider: 'github',
-    owner: 'BeNais1',
-    repo: 'planer'
-  });
 
   // Checking for updates (will run silently in the background)
   autoUpdater.checkForUpdatesAndNotify();

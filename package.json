@@ -52,7 +52,7 @@
     },
     "forceCodeSigning": false,
     "win": {
-      "target": "squirrel"
+      "target": "nsis"
     },
     "files": [
       "dist/**/*",
