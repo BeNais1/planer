@@ -1,6 +1,6 @@
 {
   "name": "planer",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "author": "Boris",
   "description": "Minimalist planner with Apple-inspired design",
   "main": "electron/main.js",
