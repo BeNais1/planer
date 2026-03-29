@@ -170,6 +170,13 @@ ipcMain.handle('theme:update', (_event, theme) => {
 app.whenReady().then(() => {
   createWindow();
 
+  // Manually configure the update feed for Squirrel.Windows local builds
+  autoUpdater.setFeedURL({
+    provider: 'github',
+    owner: 'BeNais1',
+    repo: 'planer'
+  });
+
   // Checking for updates (will run silently in the background)
   autoUpdater.checkForUpdatesAndNotify();
 
