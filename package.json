@@ -1,6 +1,6 @@
 {
   "name": "planer",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "author": "Boris",
   "description": "Minimalist planner with Apple-inspired design",
   "main": "electron/main.js",
@@ -52,7 +52,8 @@
     },
     "forceCodeSigning": false,
     "win": {
-      "target": "nsis"
+      "target": "nsis",
+      "artifactName": "${productName}-Setup-${version}.${ext}"
     },
     "nsis": {
       "oneClick": false,

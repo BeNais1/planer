@@ -167,7 +167,30 @@ ipcMain.handle('theme:update', (_event, theme) => {
 });
 
 // ── App lifecycle ────────────────────────────────────────────
+
+function removeOldSquirrelInstall() {
+  if (process.platform !== 'win32') return;
+  const localAppData = process.env.LOCALAPPDATA;
+  if (!localAppData) return;
+
+  const squirrelPath = path.join(localAppData, 'planer');
+  const updaterExe = path.join(squirrelPath, 'Update.exe');
+
+  if (fs.existsSync(updaterExe)) {
+    console.log('Found old Squirrel installation. Uninstalling...');
+    const { exec } = require('child_process');
+    // Run Squirrel uninstaller silently
+    exec(`"${updaterExe}" --uninstall -s`, (error) => {
+      if (!error) {
+        // Optional cleanup if directory still remains
+        fs.rm(squirrelPath, { recursive: true, force: true }, () => {});
+      }
+    });
+  }
+}
+
 app.whenReady().then(() => {
+  removeOldSquirrelInstall();
   createWindow();
 
   // Manually configure the update feed for Squirrel.Windows local builds

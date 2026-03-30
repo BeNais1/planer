@@ -8,6 +8,7 @@ import Highlight from '@tiptap/extension-highlight';
 import CodeBlockLowlight from '@tiptap/extension-code-block-lowlight';
 import { common, createLowlight } from 'lowlight';
 import SlashMenu from './SlashMenu';
+import MathSuggestion from './MathSuggestion';
 
 const lowlight = createLowlight(common);
 
@@ -173,6 +174,9 @@ export default function BlockEditor({ page, onUpdatePage }) {
 
       {/* Slash Menu */}
       <SlashMenu editor={editor} />
+
+      {/* Math Inline Calculator Suggestion */}
+      <MathSuggestion editor={editor} />
 
       {/* Editor */}
       <EditorContent editor={editor} />
